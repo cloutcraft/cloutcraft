@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Risky Tee Generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://em-content.zobj.net/source/microsoft-teams/363/dna_1f9ec.png"
+    />
+    <style>
+      body {
+        background-color: #111;
+        color: white;
+        padding: 2rem;
+      }
+
+      .screenshot-wrapper {
+        width: 100%;
+        max-width: 320px;
+        height: 400px;
+        margin: auto;
+        background: #111;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        border: 2px dashed #ff4d4d;
+        border-radius: 1rem;
+        box-shadow: inset 0 0 1rem rgba(255, 77, 77, 0.2);
+        position: relative;
+      }
+
+      .screenshot-wrapper::before,
+      .screenshot-wrapper::after {
+        content: "{";
+        position: absolute;
+        font-size: 2.5rem;
+        color: #ff4d4d;
+        top: 0.2rem;
+        font-weight: bold;
+        opacity: 0.3;
+      }
+
+      .screenshot-wrapper::after {
+        content: "}";
+        right: 1rem;
+        left: auto;
+      }
+
+      .screenshot-wrapper::before {
+        left: 1rem;
+      }
+
+      .shirt {
+        width: 100%;
+        max-width: 250px;
+        height: 300px;
+        position: relative;
+        background: #fff;
+        border-radius: 20px 20px 10px 10px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 80px;
+        box-sizing: border-box;
+      }
+
+      .sleeve {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        top: 0;
+        border-radius: 50% 50% 0 0;
+      }
+
+      .sleeve.left {
+        left: -60px;
+      }
+      .sleeve.right {
+        right: -60px;
+      }
+
+      .tee-text {
+        position: static;
+        width: 100%;
+        max-height: 120px;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        font-size: 1rem;
+        line-height: 1.4;
+        text-align: left;
+        font-weight: bold;
+        display: block;
+        overflow: hidden;
+      }
+
+      [contenteditable]:focus {
+        outline: 2px dashed #f33;
+      }
+
+      .theme-clean .shirt,
+      .theme-clean .sleeve {
+        background: #fff;
+        color: #000;
+      }
+
+      .theme-cursed .shirt,
+      .theme-cursed .sleeve {
+        background: #000;
+        color: #ff4d4d;
+      }
+
+      .theme-card {
+        display: none;
+        padding: 2rem;
+      }
+
+      .clout-nav {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: lowercase;
+        user-select: none;
+      }
+
+      .clout-nav .btn {
+        border-radius: 30px;
+        padding: 4px 14px;
+        transition: all 0.2s ease-in-out;
+        white-space: nowrap;
+      }
+
+      .clout-nav .btn:hover {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      .firstp {
+        text-shadow: 1px 1px 1px #fff;
+        font-size: 1.1rem;
+        font-family: "Comic Sans MS", cursive;
+      }
+
+      .theme-clean .tee-text {
+        font-family: "Segoe UI", sans-serif;
+        color: #222;
+        text-shadow: none;
+      }
+
+      .theme-cursed .tee-text {
+        font-family: "Courier New", monospace;
+        color: #ff4d4d;
+        text-shadow: 0 0 6px #ff4d4d;
+      }
+      .theme-clean .shirt {
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .theme-cursed .shirt {
+        box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+      }
+
+      .theme-manifest .shirt,
+      .theme-manifest .sleeve {
+        background: #3b0a47;
+        color: #ffd6ff;
+      }
+
+      .theme-manifest .tee-text {
+        font-family: "Comic Neue", cursive;
+        color: #ffd6ff;
+        text-shadow: 0 0 6px #ff80bf;
+      }
+
+      .theme-terminaltee .shirt,
+      .theme-terminaltee .sleeve {
+        background: #000;
+        color: #00ff00;
+      }
+
+      .theme-terminaltee .tee-text {
+        font-family: "Fira Code", monospace;
+        color: #00ff00;
+        text-shadow: 0 0 4px #0f0;
+      }
+
+      .theme-vsco .shirt,
+      .theme-vsco .sleeve {
+        background: #ffe4e1;
+        color: #ff69b4;
+      }
+
+      .theme-vsco .tee-text {
+        font-family: "Comic Sans MS", cursive;
+        color: #ff1493;
+        text-shadow: 0 0 4px #fff;
+      }
+
+      .tee-text ul {
+        list-style-type: disc;
+        padding-left: 1.2rem;
+        margin: 0;
+      }
+
+      .tee-text li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Comic+Neue&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2 class="text-center mb-3">👕 Risky Tee Generator</h2>
+    <p class="text-center text-muted firstp">
+      Pick a vibe. Drop your quote. Screenshot it.
+    </p>
+
+    <select id="themeSelector" class="form-select mb-2">
+      <option value="clean">😎 Clean Flex Tee</option>
+      <option value="cursed">💀 Cursed Drop</option>
+      <option value="manifest">🔮 Manifest Tee</option>
+      <option value="terminaltee">⛓ Terminal Tee</option>
+      <option value="vsco">🦄 VSCO Girl</option>
+    </select>
+
+    <button id="spinBtn" class="btn btn-outline-light w-100 mb-4">
+      🎰 Spin a Random Tee
+    </button>
+
+    <div
+      class="clout-nav d-flex flex-wrap justify-content-center gap-2 mb-4 px-2"
+    >
+      <a href="/tools/resume/" class="btn btn-outline-light btn-sm"
+        >📄 Cursed Resume</a
+      >
+      <a href="/tools/tmi/" class="btn btn-outline-light btn-sm"
+        >📊 Overshare Stats</a
+      >
+    </div>
+
+    <!-- Clean Tee -->
+    <div id="clean" class="theme-card theme-clean" style="display: block">
+      <div class="screenshot-wrapper" id="capture-clean">
+        <div class="shirt">
+          <div class="sleeve left"></div>
+          <div class="sleeve right"></div>
+          <div class="tee-text">
+            <ul contenteditable="true">
+              <li>He ghosted me.</li>
+              <li>So I invoiced him.</li>
+              <li>Now he owes taxes.</li>
+              <li>God bless.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursed Tee -->
+    <div id="cursed" class="theme-card theme-cursed">
+      <div class="screenshot-wrapper" id="capture-cursed">
+        <div class="shirt">
+          <div class="sleeve left"></div>
+          <div class="sleeve right"></div>
+          <div class="tee-text">
+            <ul contenteditable="true">
+              <li>sudo rm -rf /love</li>
+              <li>echo "never again" > /heart</li>
+              <li>chmod 000 trust</li>
+              <li>exit(1)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Manifest Tee -->
+    <div id="manifest" class="theme-card theme-manifest">
+      <div class="screenshot-wrapper" id="capture-manifest">
+        <div class="shirt">
+          <div class="sleeve left"></div>
+          <div class="sleeve right"></div>
+          <div class="tee-text">
+            <ul contenteditable="true">
+              <li>I didn’t ghost you,</li>
+              <li>I manifested silence.</li>
+              <li>Chakras aligned,</li>
+              <li>So did my block list.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Terminal Tee -->
+    <div id="terminaltee" class="theme-card theme-terminaltee">
+      <div class="screenshot-wrapper" id="capture-terminaltee">
+        <div class="shirt">
+          <div class="sleeve left"></div>
+          <div class="sleeve right"></div>
+          <div class="tee-text">
+            <ul contenteditable="true">
+              <li>&gt; whoami</li>
+              <li>root@lonely</li>
+              <li>&gt; uptime</li>
+              <li>999 days of pain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- VSCO Tee -->
+    <div id="vsco" class="theme-card theme-vsco">
+      <div class="screenshot-wrapper" id="capture-vsco">
+        <div class="shirt">
+          <div class="sleeve left"></div>
+          <div class="sleeve right"></div>
+          <div class="tee-text">
+            <ul contenteditable="true">
+              <li>And I oop- 💅</li>
+              <li>Save the turtles.</li>
+              <li>Gaslight a boy.</li>
+              <li>Hydrate or die-drate.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button id="screenshotBtn" class="btn btn-danger w-100 mt-4">
+      📥 Save This Tee
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+      const dropdown = document.getElementById("themeSelector");
+      const themes = document.querySelectorAll(".theme-card");
+
+      dropdown.onchange = () => {
+        themes.forEach((t) => (t.style.display = "none"));
+        const selected = dropdown.value;
+        document.getElementById(selected).style.display = "block";
+      };
+
+      document.getElementById("spinBtn").onclick = () => {
+        const options = Array.from(dropdown.options).map((o) => o.value);
+        let spinCount = 12;
+        let delay = 100;
+
+        function spinStep(i) {
+          const val = options[Math.floor(Math.random() * options.length)];
+          dropdown.value = val;
+          dropdown.dispatchEvent(new Event("change"));
+          if (i < spinCount) {
+            delay += 35;
+            setTimeout(() => spinStep(i + 1), delay);
+          }
+        }
+
+        spinStep(0);
+      };
+
+      document.getElementById("screenshotBtn").onclick = () => {
+        const selected = dropdown.value;
+        const target = document.querySelector(
+          `#${selected} .screenshot-wrapper`
+        );
+
+        // Wait for fonts to load
+        document.fonts.ready.then(() => {
+          html2canvas(target).then((canvas) => {
+            const link = document.createElement("a");
+            link.download = `${selected}_tee.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+          });
+        });
+      };
+
+      // Prevent more than 4 <li>s inside .tee-text
+      document.querySelectorAll(".tee-text ul").forEach((ul) => {
+        ul.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            const liCount = ul.querySelectorAll("li").length;
+            if (liCount >= 4) e.preventDefault();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

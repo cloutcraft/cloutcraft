@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CloutCraft</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="https://em-content.zobj.net/source/microsoft-teams/363/dna_1f9ec.png" />
+    <style>
+      body {
+        background: linear-gradient(160deg, #0a0a0a, #141414);
+        color: #e2e2e2;
+        font-family: "Segoe UI", "Roboto", sans-serif;
+        letter-spacing: 0.03rem;
+      }
+
+      header {
+        background-color: #000;
+        border-bottom: 1px solid #333;
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-weight: 900;
+        color: #f6f6f6;
+        letter-spacing: 0.05rem;
+        text-shadow: 0 0 5px #f0f, 0 0 10px #0ff;
+      }
+
+      p.text-secondary {
+        color: #aaa !important;
+        font-style: italic;
+      }
+
+      .card {
+        background: #1a1a1a;
+        border: 2px solid #333;
+        border-radius: 1rem;
+        padding: 2rem;
+        height: 100%;
+        transition: all 0.3s ease;
+      }
+
+      .card:hover {
+        background: #262626;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.25),
+          0 0 15px rgba(255, 0, 255, 0.15);
+      }
+
+      .card h3 {
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 2px #0ff;
+      }
+
+      .card p {
+        color: #ccc;
+        font-size: 0.95rem;
+      }
+
+      a.text-white:hover {
+        color: #0ff !important;
+      }
+
+      .license-banner {
+        font-size: 0.8rem;
+        color: #bbb;
+        padding: 1rem;
+        background: #000;
+        border-top: 1px solid #333;
+        text-align: center;
+      }
+
+      footer {
+        background: #000;
+        color: #888;
+        padding: 2rem 0;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      footer a {
+        color: #bbb;
+      }
+
+      footer a:hover {
+        color: #f0f;
+      }
+    </style>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header class="bg-black py-4 shadow-sm text-center">
+      <h1 class="fw-bold text-white">🧬 CloutCraft</h1>
+      <p class="text-secondary fst-italic">
+        Tools nobody asked for. But you'll post anyway.
+      </p>
+    </header>
+
+    <main class="container my-5 text-center">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <a href="./tools/resume/" class="text-decoration-none text-white">
+            <div class="card h-100">
+              <h3 class="mb-3">📄 JSON Resume Generator</h3>
+              <p class="small text-secondary">
+                Paste your chaos. Download your aesthetic. Gen Z-style resume
+                for flexing, not hiring.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="./tools/tmi/" class="text-decoration-none text-white">
+            <div class="card h-100">
+              <h3 class="mb-3">📊 TMI Dashboard</h3>
+              <p class="small text-secondary">
+                Track your life in cursed stats. Doomscroll vs. studying? Gacha
+                addiction? We got you.
+              </p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="./tools/tee/" class="text-decoration-none text-white">
+            <div class="card h-100">
+              <h3 class="mb-3">👕 Risky Tee Generator</h3>
+              <p class="small text-secondary">
+                Type a quote → slap it on a fake shirt → screenshot it → cause
+                problems online.
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 CloutCraft &nbsp; | &nbsp;
+          <a href="/terms.html" class="text-white">Terms</a> &nbsp;•&nbsp;
+          <a href="/privacy.html" class="text-white">Privacy</a> &nbsp;•&nbsp;
+          <a href="/vault/" class="text-white">Vault</a>
+          <span class="text-danger fw-bold">⚠</span>
+        </p>
+        <p class="mt-2 small text-secondary">
+          Built to farm attention. Not to last.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

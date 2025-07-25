@@ -1,0 +1,35 @@
+name: Generate PNG Artifact
+
+on:
+  push:
+    paths:
+      - 'queue/*.json'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install wkhtmltopdf -y
+        pip install jinja2 imgkit
+
+    - name: Generate PNG
+      run: |
+        python scripts/generate_png.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: cloutcraft-output
+        path: output/*.png

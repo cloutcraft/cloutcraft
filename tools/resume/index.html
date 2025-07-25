@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JSON Resume Generator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="https://em-content.zobj.net/source/microsoft-teams/363/dna_1f9ec.png"
+    />
+    <style>
+      body {
+        background-color: #111;
+        color: white;
+        padding: 2rem;
+      }
+      .theme-card {
+        display: none;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+        margin-top: 2rem;
+        font-family: monospace;
+      }
+      .json-frame {
+        border: 2px dashed #0ff;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        background: rgba(0, 255, 255, 0.05);
+        white-space: pre-wrap;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        box-shadow: inset 0 0 0.4rem rgba(0, 255, 255, 0.2);
+        backdrop-filter: blur(2px);
+        position: relative;
+      }
+      .json-frame::before,
+      .json-frame::after {
+        content: "{";
+        position: absolute;
+        font-size: 2.5rem;
+        color: #0ff;
+        top: 0.2rem;
+        font-weight: bold;
+        opacity: 0.3;
+      }
+      .json-frame::after {
+        content: "}";
+        right: 1rem;
+        left: auto;
+      }
+      .json-frame::before {
+        left: 1rem;
+      }
+      [contenteditable]:focus {
+        outline: 2px dashed #0ff;
+      }
+      .clout-nav .btn {
+        border-radius: 30px;
+        padding: 4px 14px;
+        transition: all 0.2s ease-in-out;
+      }
+      .clout-nav .btn:hover {
+        transform: scale(1.05);
+      }
+      /* Resume Theme: Terminal */
+      .theme-terminal .json-frame {
+        background: #000;
+        color: #00ff00;
+        font-family: "Courier New", monospace;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+        border-color: #0f0;
+      }
+
+      /* Resume Theme: Vaporwave */
+      .theme-vaporwave .json-frame {
+        background: linear-gradient(135deg, #ff9af5 0%, #9aefff 100%);
+        color: #2d004d;
+        font-family: "Comic Sans MS", cursive;
+        text-shadow: 0 0 3px #fff;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        border-color: #fff;
+      }
+
+      /* Resume Theme: Startup Baddie */
+      .theme-startup .json-frame {
+        background: #fff;
+        color: #333;
+        font-family: "Segoe UI", sans-serif;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        border-color: #aaa;
+      }
+
+      /* Resume Theme: Dark Academia */
+      .theme-darkacademia .json-frame {
+        background: #1c1c1c;
+        color: #d0c7b7;
+        font-family: "Playfair Display", serif;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        border-color: #c0a47c;
+      }
+
+      /* Resume Theme: AI Intern */
+      .theme-aiintern .json-frame {
+        background: linear-gradient(135deg, #111, #222);
+        color: #0ff;
+        font-family: "Courier New", monospace;
+        box-shadow: 0 0 12px #0ff3;
+        border-color: #0ff;
+      }
+
+      /* Resume Theme: Theatre Kid */
+      .theme-theatre .json-frame {
+        background: #fff0f5;
+        color: #a00;
+        font-family: "Comic Sans MS", cursive;
+        text-shadow: 0 0 2px #f00;
+        border-color: #f99;
+      }
+      .firstp {
+        text-shadow: 1px 1px 1px #fff;
+        font-size: 1.1rem;
+        font-family: "Comic Sans MS", cursive;
+      }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Comic+Neue&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2 class="text-center mb-3">📄 JSON Resume Generator</h2>
+    <p class="text-center text-muted fst-italic firstp">
+      Brag differently. Edit the JSON. Screenshot it. Share chaos.
+    </p>
+
+    <select id="themeSelector" class="form-select mb-3">
+      <option value="terminal">🖥️ Terminal Mode</option>
+      <option value="vaporwave">🎨 Vaporwave</option>
+      <option value="startup">🧃 Startup Baddie</option>
+      <option value="darkacademia">📜 Dark Academia</option>
+      <option value="aiintern">🤖 AI Intern</option>
+      <option value="theatre">🎭 Theatre Kid</option>
+    </select>
+
+    <button id="spinBtn" class="btn btn-outline-light w-100 mb-4">
+      🎰 Spin a Resume Theme
+    </button>
+
+    <div class="clout-nav d-flex justify-content-center gap-2 mb-4">
+      <a href="/tools/tmi/" class="btn btn-outline-light btn-sm"
+        >📊 TMI Dashboard</a
+      >
+      <a href="/tools/tee/" class="btn btn-outline-light btn-sm"
+        >👕 Risky Tee</a
+      >
+    </div>
+
+    <!-- Terminal Mode -->
+    <div id="terminal" class="theme-card theme-terminal" style="display: block">
+      <div class="json-frame" contenteditable="true">
+        { "name": "jack the sparrow", "skills": ["gaslighting", "crying in
+        excel", "mid-tier css"], "experience": [ "blocked him (4x)", "linkedin
+        ghosting expert", "emoji portfolio manager" ], "contact": "dm me if u
+        dare" }
+      </div>
+    </div>
+
+    <!-- Vaporwave -->
+    <div id="vaporwave" class="theme-card theme-vaporwave">
+      <div class="json-frame" contenteditable="true">
+        { "name": "🌸 angel.exe", "skills": ["html but aesthetic", "typing to
+        lo-fi", "sadboy hours"], "projects": ["clout.div", "emotional api",
+        "404: motivation not found"], "vibe": "vapor-coded" }
+      </div>
+    </div>
+
+    <!-- Startup Baddie -->
+    <div id="startup" class="theme-card theme-startup">
+      <div class="json-frame" contenteditable="true">
+        { "name": "CEO of Nothing", "skills": ["talked in meetings", "pivoted
+        twice", "built nothing"], "founded": ["badideas.app", "pitchdeck.pdf"],
+        "linkedin": "cloutcraft CEO in stealth mode" }
+      </div>
+    </div>
+    <!-- Dark Academia -->
+    <div id="darkacademia" class="theme-card theme-darkacademia">
+      <div class="json-frame" contenteditable="true">
+        { "name": "🖋️ Byron.exe", "skills": ["Goth code", "Philosophical
+        recursion", "Poetry in Python"], "quote": "I debug therefore I am",
+        "vibe": "Ink & errors" }
+      </div>
+    </div>
+    <!-- AI Intern -->
+    <div id="aiintern" class="theme-card theme-aiintern">
+      <div class="json-frame" contenteditable="true">
+        { "name": "GPT-0.5", "skills": ["Hallucinating tasks", "Wrote 900 cover
+        letters", "No job still"], "past roles": ["Prompt Engineer (unpaid)",
+        "AI therapist"], "status": "Awaiting instruction..." }
+      </div>
+    </div>
+    <!-- Theatre Kid -->
+    <div id="theatre" class="theme-card theme-theatre">
+      <div class="json-frame" contenteditable="true">
+        { "name": "Dramatron", "skills": ["Excel soliloquy", "CSS melodrama",
+        "Slack improv"], "awards": ["Best Fake Cry", "Most Tabs Opened"], "dream
+        role": "Lead dev with main character energy" }
+      </div>
+    </div>
+
+    <button id="screenshotBtn" class="btn btn-info w-100 mt-4">
+      📸 Screenshot My Resume
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script>
+      const dropdown = document.getElementById("themeSelector");
+      const themes = document.querySelectorAll(".theme-card");
+
+      dropdown.onchange = () => {
+        themes.forEach((t) => (t.style.display = "none"));
+        const selected = dropdown.value;
+        document.getElementById(selected).style.display = "block";
+      };
+
+      document.getElementById("spinBtn").onclick = () => {
+        const options = Array.from(dropdown.options).map((o) => o.value);
+        let spinCount = 12;
+        let delay = 100;
+
+        function spinStep(i) {
+          const val = options[Math.floor(Math.random() * options.length)];
+          dropdown.value = val;
+          dropdown.dispatchEvent(new Event("change"));
+
+          if (i < spinCount) {
+            delay += 35;
+            setTimeout(() => spinStep(i + 1), delay);
+          }
+        }
+
+        spinStep(0);
+      };
+
+      document.getElementById("screenshotBtn").onclick = () => {
+        const selected = dropdown.value;
+        const target = document.querySelector(`#${selected} .json-frame`);
+        html2canvas(target).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = `${selected}_resume.png`;
+          link.href = canvas.toDataURL();
+          link.click();
+        });
+      };
+    </script>
+  </body>
+</html>
