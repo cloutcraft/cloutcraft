@@ -18,6 +18,20 @@
         color: white;
         padding: 2rem;
       }
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url("https://media.giphy.com/media/YTbZzCkRQCEJa/giphy.gif")
+          center center / cover no-repeat;
+        opacity: 0.025;
+        pointer-events: none;
+        z-index: 0;
+      }
+
       .theme-card {
         display: none;
         padding: 2rem;
@@ -67,64 +81,127 @@
       .clout-nav .btn:hover {
         transform: scale(1.05);
       }
-      /* Resume Theme: Terminal */
-      .theme-terminal .json-frame {
-        background: #000;
-        color: #00ff00;
-        font-family: "Courier New", monospace;
-        box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
-        border-color: #0f0;
-      }
-
-      /* Resume Theme: Vaporwave */
-      .theme-vaporwave .json-frame {
-        background: linear-gradient(135deg, #ff9af5 0%, #9aefff 100%);
-        color: #2d004d;
-        font-family: "Comic Sans MS", cursive;
-        text-shadow: 0 0 3px #fff;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        border-color: #fff;
-      }
-
-      /* Resume Theme: Startup Baddie */
-      .theme-startup .json-frame {
-        background: #fff;
-        color: #333;
-        font-family: "Segoe UI", sans-serif;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-        border-color: #aaa;
-      }
-
-      /* Resume Theme: Dark Academia */
-      .theme-darkacademia .json-frame {
-        background: #1c1c1c;
-        color: #d0c7b7;
-        font-family: "Playfair Display", serif;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-        border-color: #c0a47c;
-      }
-
-      /* Resume Theme: AI Intern */
-      .theme-aiintern .json-frame {
-        background: linear-gradient(135deg, #111, #222);
+      .resume-card {
+        padding: 2rem;
+        border-radius: 1rem;
+        font-family: "Fira Code", monospace;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        line-height: 1.6;
+        border: 2px solid #0ff;
+        box-shadow: 0 0 15px #0ff6;
+        background: linear-gradient(135deg, #0a0a0a, #111);
         color: #0ff;
-        font-family: "Courier New", monospace;
-        box-shadow: 0 0 12px #0ff3;
-        border-color: #0ff;
       }
 
-      /* Resume Theme: Theatre Kid */
-      .theme-theatre .json-frame {
-        background: #fff0f5;
-        color: #a00;
-        font-family: "Comic Sans MS", cursive;
-        text-shadow: 0 0 2px #f00;
-        border-color: #f99;
+      .resume-card h3 {
+        margin-bottom: 1.2rem;
+        font-size: clamp(1.4rem, 4vw, 1.8rem);
+        text-shadow: 0 0 4px #0ff;
+        font-weight: bold;
       }
+
+      .resume-card ul {
+        list-style-type: "💾 ";
+        padding-left: 1.5rem;
+        margin: 0;
+      }
+
+      .resume-card li {
+        margin-bottom: 0.75rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* Theme overrides */
+      .theme-vaporwave .resume-card {
+        background: linear-gradient(145deg, #ff9af5, #9aefff);
+        color: #2d004d;
+        border-color: #fff;
+        box-shadow: 0 0 15px #fff7;
+        font-family: "Comic Sans MS", cursive;
+      }
+
+      .theme-startup .resume-card {
+        background: linear-gradient(120deg, #111, #1f1f1f);
+        color: #f2f2f2;
+        border-color: #ff4dff;
+        box-shadow: 0 0 15px #ff4dffaa;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .theme-darkacademia .resume-card {
+        background: linear-gradient(135deg, #1c1c1c, #2e2e2e);
+        color: #d0c7b7;
+        border-color: #c0a47c;
+        box-shadow: 0 0 10px #c0a47c66;
+        font-family: "Playfair Display", serif;
+      }
+
+      .theme-aiintern .resume-card {
+        background: linear-gradient(120deg, #0a0a0a, #1a1a1a);
+        color: #0ff;
+        border-color: #0ff;
+        box-shadow: 0 0 15px #0ff8;
+        font-family: "Courier New", monospace;
+      }
+
+      .theme-theatre .resume-card {
+        background: linear-gradient(140deg, #fff0f5, #ffe0f0);
+        color: #a00;
+        border-color: #f99;
+        box-shadow: 0 0 12px #f99;
+        font-family: "Comic Sans MS", cursive;
+      }
+
       .firstp {
         text-shadow: 1px 1px 1px #fff;
         font-size: 1.1rem;
         font-family: "Comic Sans MS", cursive;
+      }
+
+      .resume-card {
+        line-height: 1.6;
+      }
+      .resume-card * {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+      }
+      .resume-card *::before,
+      .resume-card *::after {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+      }
+      .glitch-text {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #fff;
+        text-shadow: 1px 0 magenta, -1px 0 cyan;
+        animation: glitch 1s infinite;
+      }
+
+      @keyframes glitch {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(-2px, 2px);
+        }
+        40% {
+          transform: translate(2px, -1px);
+        }
+        60% {
+          transform: translate(-1px, 2px);
+        }
+        80% {
+          transform: translate(2px, 1px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+
+      footer a:hover {
+        color: #f0f;
+        text-shadow: 0 0 5px #f0f;
       }
     </style>
     <link
@@ -133,7 +210,7 @@
     />
   </head>
   <body>
-    <h2 class="text-center mb-3">📄 JSON Resume Generator</h2>
+    <h2 class="text-center mb-3 glitch-text">📄 JSON Resume Generator</h2>
     <p class="text-center text-muted fst-italic firstp">
       Brag differently. Edit the JSON. Screenshot it. Share chaos.
     </p>
@@ -162,59 +239,105 @@
 
     <!-- Terminal Mode -->
     <div id="terminal" class="theme-card theme-terminal" style="display: block">
-      <div class="json-frame" contenteditable="true">
-        { "name": "jack the sparrow", "skills": ["gaslighting", "crying in
-        excel", "mid-tier css"], "experience": [ "blocked him (4x)", "linkedin
-        ghosting expert", "emoji portfolio manager" ], "contact": "dm me if u
-        dare" }
+      <div class="resume-card" contenteditable="true">
+        <h3>👤 jack the sparrow</h3>
+        <ul>
+          <li>🛠 Skills: gaslighting, crying in Excel, mid-tier CSS</li>
+          <li>💼 Experience: blocked him (4x), ghosting expert</li>
+          <li>📎 Role: emoji portfolio manager</li>
+          <li>📬 Contact: dm me if u dare</li>
+        </ul>
       </div>
     </div>
 
     <!-- Vaporwave -->
     <div id="vaporwave" class="theme-card theme-vaporwave">
-      <div class="json-frame" contenteditable="true">
-        { "name": "🌸 angel.exe", "skills": ["html but aesthetic", "typing to
-        lo-fi", "sadboy hours"], "projects": ["clout.div", "emotional api",
-        "404: motivation not found"], "vibe": "vapor-coded" }
+      <div class="resume-card" contenteditable="true">
+        <h3>🌸 angel.exe</h3>
+        <ul>
+          <li>🛠 Skills: html but aesthetic, typing to lo-fi, sadboy hours</li>
+          <li>
+            🧪 Projects: clout.div, emotional API, 404: motivation not found
+          </li>
+          <li>💫 Vibe: vapor-coded</li>
+        </ul>
       </div>
     </div>
 
     <!-- Startup Baddie -->
     <div id="startup" class="theme-card theme-startup">
-      <div class="json-frame" contenteditable="true">
-        { "name": "CEO of Nothing", "skills": ["talked in meetings", "pivoted
-        twice", "built nothing"], "founded": ["badideas.app", "pitchdeck.pdf"],
-        "linkedin": "cloutcraft CEO in stealth mode" }
+      <div class="resume-card" contenteditable="true">
+        <h3>🚀 CEO of Nothing</h3>
+        <ul>
+          <li>🛠 Skills: talked in meetings, pivoted twice, built nothing</li>
+          <li>💼 Founded: badideas.app, pitchdeck.pdf</li>
+          <li>🔍 LinkedIn: stealth mode</li>
+        </ul>
       </div>
     </div>
+
     <!-- Dark Academia -->
     <div id="darkacademia" class="theme-card theme-darkacademia">
-      <div class="json-frame" contenteditable="true">
-        { "name": "🖋️ Byron.exe", "skills": ["Goth code", "Philosophical
-        recursion", "Poetry in Python"], "quote": "I debug therefore I am",
-        "vibe": "Ink & errors" }
+      <div class="resume-card" contenteditable="true">
+        <h3>🖋 Byron.exe</h3>
+        <ul>
+          <li>
+            📚 Skills: Goth code, philosophical recursion, poetry in Python
+          </li>
+          <li>🧠 Quote: “I debug therefore I am”</li>
+          <li>🎭 Vibe: Ink & Errors</li>
+        </ul>
       </div>
     </div>
+
     <!-- AI Intern -->
     <div id="aiintern" class="theme-card theme-aiintern">
-      <div class="json-frame" contenteditable="true">
-        { "name": "GPT-0.5", "skills": ["Hallucinating tasks", "Wrote 900 cover
-        letters", "No job still"], "past roles": ["Prompt Engineer (unpaid)",
-        "AI therapist"], "status": "Awaiting instruction..." }
+      <div class="resume-card" contenteditable="true">
+        <h3>🤖 GPT-0.5</h3>
+        <ul>
+          <li>
+            🛠 Skills: hallucinating tasks, 900 cover letters, still jobless
+          </li>
+          <li>🧪 Roles: prompt engineer (unpaid), AI therapist</li>
+          <li>⌛ Status: Awaiting instruction...</li>
+        </ul>
       </div>
     </div>
+
     <!-- Theatre Kid -->
     <div id="theatre" class="theme-card theme-theatre">
-      <div class="json-frame" contenteditable="true">
-        { "name": "Dramatron", "skills": ["Excel soliloquy", "CSS melodrama",
-        "Slack improv"], "awards": ["Best Fake Cry", "Most Tabs Opened"], "dream
-        role": "Lead dev with main character energy" }
+      <div class="resume-card" contenteditable="true">
+        <h3>🎭 Dramatron</h3>
+        <ul>
+          <li>🎤 Skills: Excel soliloquy, CSS melodrama, Slack improv</li>
+          <li>🏆 Awards: Best fake cry, most tabs opened</li>
+          <li>🎬 Dream role: Dev with main character energy</li>
+        </ul>
       </div>
     </div>
 
     <button id="screenshotBtn" class="btn btn-info w-100 mt-4">
       📸 Screenshot My Resume
     </button>
+
+    <footer class="text-center mt-5 pt-4 text-muted" style="font-size: 0.9rem">
+      <p>
+        <span class="me-2">&copy; 2025 CloutCraft</span>•
+        <a href="/terms.html" class="text-white text-decoration-none">Terms</a>
+        •
+        <a href="/privacy.html" class="text-white text-decoration-none"
+          >Privacy</a
+        >
+        •
+        <a href="/license.html" class="text-white text-decoration-none">License of Chaos</a>
+        •
+        <span
+          class="text-white-50 text-decoration-underline"
+          style="cursor: not-allowed"
+          >Vault (coming soon)</span
+        >
+      </p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script>
@@ -248,7 +371,7 @@
 
       document.getElementById("screenshotBtn").onclick = () => {
         const selected = dropdown.value;
-        const target = document.querySelector(`#${selected} .json-frame`);
+        const target = document.querySelector(`#${selected} .resume-card`);
         html2canvas(target).then((canvas) => {
           const link = document.createElement("a");
           link.download = `${selected}_resume.png`;

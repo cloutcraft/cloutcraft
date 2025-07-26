@@ -19,20 +19,31 @@
         padding: 2rem;
       }
 
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url("https://media.giphy.com/media/xUPGcdhiQ94z5wcHi8/giphy.gif")
+          center center / cover no-repeat;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
+      }
+
       .screenshot-wrapper {
-        width: 100%;
         max-width: 320px;
-        height: 400px;
-        margin: auto;
-        background: #111;
+        height: auto;
+        margin: 3rem auto;
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 1rem;
-        box-sizing: border-box;
-        border: 2px dashed #ff4d4d;
-        border-radius: 1rem;
-        box-shadow: inset 0 0 1rem rgba(255, 77, 77, 0.2);
+        align-items: flex-start;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        border: none;
         position: relative;
       }
 
@@ -70,6 +81,24 @@
         align-items: flex-start;
         padding-top: 80px;
         box-sizing: border-box;
+        transform: rotate(-2deg);
+        transition: transform 0.3s ease-in-out;
+      }
+      .shirt:hover {
+        transform: rotate(0deg) scale(1.02);
+      }
+      .shirt::after {
+        content: "";
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        filter: blur(6px);
+        border-radius: 50%;
+        z-index: -1;
       }
 
       .sleeve {
@@ -140,6 +169,17 @@
       .clout-nav .btn:hover {
         transform: scale(1.05);
         opacity: 1;
+      }
+      #randomQuoteBtn {
+        background: linear-gradient(135deg, #ff80bf, #8e44ad);
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        letter-spacing: 0.5px;
+      }
+      #randomQuoteBtn:hover {
+        opacity: 0.9;
+        box-shadow: 0 0 10px #f0f;
       }
 
       .firstp {
@@ -214,6 +254,37 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      .glitch-text {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #fff;
+        text-shadow: 1px 0 magenta, -1px 0 cyan;
+        animation: glitch 1s infinite;
+      }
+      @keyframes glitch {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(-2px, 2px);
+        }
+        40% {
+          transform: translate(2px, -1px);
+        }
+        60% {
+          transform: translate(-1px, 2px);
+        }
+        80% {
+          transform: translate(2px, 1px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+      footer a:hover {
+        color: #f0f;
+        text-shadow: 0 0 5px #f0f;
+      }
     </style>
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Comic+Neue&display=swap"
@@ -221,10 +292,12 @@
     />
   </head>
   <body>
-    <h2 class="text-center mb-3">👕 Risky Tee Generator</h2>
-    <p class="text-center text-muted firstp">
-      Pick a vibe. Drop your quote. Screenshot it.
-    </p>
+    <div class="text-center mb-4 mt-4">
+      <h2 class="glitch-text">👕 Risky Tee Generator</h2>
+      <p class="text-muted fst-italic firstp">
+        Pick a vibe. Drop your quote. Screenshot it.
+      </p>
+    </div>
 
     <select id="themeSelector" class="form-select mb-2">
       <option value="clean">😎 Clean Flex Tee</option>
@@ -335,10 +408,32 @@
         </div>
       </div>
     </div>
+    <button id="randomQuoteBtn" class="btn btn-secondary w-100 mb-2">
+      🎲 Randomize Tee Text
+    </button>
 
     <button id="screenshotBtn" class="btn btn-danger w-100 mt-4">
       📥 Save This Tee
     </button>
+
+    <footer class="text-center mt-5 pt-4 text-muted" style="font-size: 0.9rem">
+      <p>
+        <span class="me-2">&copy; 2025 CloutCraft</span>•
+        <a href="/terms.html" class="text-white text-decoration-none">Terms</a>
+        •
+        <a href="/privacy.html" class="text-white text-decoration-none"
+          >Privacy</a
+        >
+        •
+        <a href="/license.html" class="text-white text-decoration-none">License of Chaos</a>
+        •
+        <span
+          class="text-white-50 text-decoration-underline"
+          style="cursor: not-allowed"
+          >Vault (coming soon)</span
+        >
+      </p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script>
@@ -384,6 +479,55 @@
             link.click();
           });
         });
+      };
+      document.getElementById("randomQuoteBtn").onclick = () => {
+        const lines = [
+          // edgy & cursed
+          [
+            "echo '404: love not found'",
+            "rm -rf /trust",
+            "systemctl stop caring",
+            "exit 1337",
+          ],
+          // poetic delusion
+          [
+            "I debugged my feelings",
+            "they still throw errors",
+            "romantic nullpointer",
+            "segfaulted heart",
+          ],
+          // hacker core
+          ["> whoami", "clown@terminal", "> uptime", "404 weeks of delulu"],
+          // deadpan dark
+          [
+            "He texted 'k'",
+            "I replied with JSON",
+            "He ghosted",
+            "I committed to GitHub",
+          ],
+          // AI absurdity
+          [
+            "Generated boyfriend.exe",
+            "Uncanny & unavailable",
+            "Fine-tuned my red flags",
+            "Still no output",
+          ],
+          // reality-glitched
+          [
+            "This shirt is real",
+            "But I'm not",
+            "You're hallucinating",
+            "But it looks good",
+          ],
+        ];
+
+        const currentTheme = dropdown.value;
+        const random = lines[Math.floor(Math.random() * lines.length)];
+
+        const targetUL = document.querySelector(
+          `#${currentTheme} .tee-text ul`
+        );
+        targetUL.innerHTML = random.map((q) => `<li>${q}</li>`).join("");
       };
 
       // Prevent more than 4 <li>s inside .tee-text

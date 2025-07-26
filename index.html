@@ -8,13 +8,29 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="https://em-content.zobj.net/source/microsoft-teams/363/dna_1f9ec.png" />
+    <link
+      rel="icon"
+      href="https://em-content.zobj.net/source/microsoft-teams/363/dna_1f9ec.png"
+    />
     <style>
       body {
-        background: linear-gradient(160deg, #0a0a0a, #141414);
+        background: radial-gradient(circle at top, #111 0%, #000 100%);
         color: #e2e2e2;
         font-family: "Segoe UI", "Roboto", sans-serif;
         letter-spacing: 0.03rem;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: url("https://media.giphy.com/media/l41K0pW3p6y5E0hiM/giphy.gif")
+          center center / cover no-repeat;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 0;
       }
 
       header {
@@ -36,12 +52,33 @@
       }
 
       .card {
+        position: relative;
         background: #1a1a1a;
-        border: 2px solid #333;
+        border: 2px solid transparent;
         border-radius: 1rem;
         padding: 2rem;
         height: 100%;
         transition: all 0.3s ease;
+        z-index: 1;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, magenta, cyan);
+        border-radius: 1rem;
+        z-index: -1;
+        filter: blur(6px);
+        opacity: 0.3;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover::before {
+        opacity: 0.6;
       }
 
       .card:hover {
@@ -90,12 +127,64 @@
       footer a:hover {
         color: #f0f;
       }
+      .glitch-text {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #fff;
+        position: relative;
+        text-shadow: 1px 0 magenta, -1px 0 cyan;
+        animation: glitch 1s infinite;
+      }
+
+      @keyframes glitch {
+        0% {
+          transform: translate(0);
+        }
+        20% {
+          transform: translate(-2px, 2px);
+        }
+        40% {
+          transform: translate(2px, -1px);
+        }
+        60% {
+          transform: translate(-1px, 2px);
+        }
+        80% {
+          transform: translate(2px, 1px);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+      .footer-glow {
+        background: #000;
+        border-top: 1px solid #222;
+        box-shadow: 0 -2px 20px rgba(255, 0, 255, 0.1);
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+
+      .footer-link {
+        color: #bbb;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer-link:hover {
+        color: #f0f;
+        text-shadow: 0 0 5px #f0f;
+      }
+
+      .text-pink {
+        color: #f0f;
+        text-shadow: 0 0 4px #f0f4;
+      }
     </style>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <header class="bg-black py-4 shadow-sm text-center">
-      <h1 class="fw-bold text-white">🧬 CloutCraft</h1>
-      <p class="text-secondary fst-italic">
+    <header class="text-center py-5 hero-glitch">
+      <h1 class="glitch-text">🧬 CloutCraft</h1>
+      <p class="sub text-secondary fst-italic mt-2">
         Tools nobody asked for. But you'll post anyway.
       </p>
     </header>
@@ -138,16 +227,17 @@
       </div>
     </main>
 
-    <footer>
+    <footer class="footer-glow mt-auto text-center py-4">
       <div class="container">
-        <p>
-          &copy; 2025 CloutCraft &nbsp; | &nbsp;
-          <a href="/terms.html" class="text-white">Terms</a> &nbsp;•&nbsp;
-          <a href="/privacy.html" class="text-white">Privacy</a> &nbsp;•&nbsp;
-          <a href="/vault/" class="text-white">Vault</a>
-          <span class="text-danger fw-bold">⚠</span>
+        <p class="mb-1">
+          &copy; 2025 <span class="fw-bold text-pink">CloutCraft</span> &nbsp; •
+          &nbsp;
+          <a href="/terms.html" class="footer-link">Terms</a> &nbsp;•&nbsp;
+          <a href="/privacy.html" class="footer-link">Privacy</a> &nbsp;•&nbsp;
+          <a href="/license.html" class="footer-link">License of Chaos</a> &nbsp;•&nbsp;
+          <a href="/vault/" class="footer-link">Vault</a> ⚠
         </p>
-        <p class="mt-2 small text-secondary">
+        <p class="small text-muted fst-italic">
           Built to farm attention. Not to last.
         </p>
       </div>
