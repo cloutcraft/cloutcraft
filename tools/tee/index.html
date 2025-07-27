@@ -425,7 +425,9 @@
           >Privacy</a
         >
         •
-        <a href="/license.html" class="text-white text-decoration-none">License of Chaos</a>
+        <a href="/license.html" class="text-white text-decoration-none"
+          >License of Chaos</a
+        >
         •
         <span
           class="text-white-50 text-decoration-underline"
@@ -539,6 +541,38 @@
           }
         });
       });
+    </script>
+    <!-- CloutCraft logging snippet -->
+    <script>
+      (function () {
+        // 1. Ensure each visitor has a stable sessionId
+        const key = "cloutcraft-session";
+        let sessionId = localStorage.getItem(key);
+        if (!sessionId) {
+          sessionId = crypto.randomUUID();
+          localStorage.setItem(key, sessionId);
+        }
+
+        // 2. Logging helper
+        function toolLogger({ tool, sessionId }) {
+          fetch("/.netlify/functions/log-click", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              tool, // our tool identifier
+              sessionId, // per‑user UUID
+              userAgent: navigator.userAgent,
+            }),
+          }).catch((err) => console.warn("Logging failed:", err));
+        }
+
+        // 3. Hook into the “Save This Tee” button
+        document
+          .getElementById("screenshotBtn")
+          .addEventListener("click", () => {
+            toolLogger({ tool: "tee", sessionId });
+          });
+      })();
     </script>
   </body>
 </html>

@@ -1,0 +1,5 @@
+[build]
+  # where to find your functions
+  functions = "netlify/functions"
+  # serve your static files from the repo root
+  publish = "."
