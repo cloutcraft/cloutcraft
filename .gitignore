@@ -3,6 +3,5 @@ __pycache__/
 *.log
 *.pyc
 node_modules
-*.txt
 # Local Netlify folder
 .netlify
